@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Expense Tracker - Enhanced</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container" role="main" aria-label="Expense Tracker Application">
+        <h1>Expense Tracker</h1>
+
+        <form id="expense-form" aria-label="Add New Transaction">
+            <input type="text" id="description" placeholder="Description" required aria-required="true" aria-label="Transaction description" />
+            <input type="number" id="amount" placeholder="Amount" step="0.01" min="0.01" required aria-required="true" aria-label="Transaction amount" />
+            <select id="category" required aria-required="true" aria-label="Transaction category">
+                <option value="" disabled selected>Select Category</option>
+                <option value="salary" data-type="income">Salary</option>
+                <option value="freelance" data-type="income">Freelance</option>
+                <option value="investment" data-type="income">Investment</option>
+                <option value="food" data-type="expense">Food</option>
+                <option value="rent" data-type="expense">Rent</option>
+                <option value="entertainment" data-type="expense">Entertainment</option>
+                <option value="transport" data-type="expense">Transport</option>
+                <option value="utilities" data-type="expense">Utilities</option>
+                <option value="other_income" data-type="income">Other Income</option>
+                <option value="other_expense" data-type="expense">Other Expense</option>
+            </select>
+            <input type="date" id="date" required aria-required="true" aria-label="Transaction date" />
+            <button type="submit" aria-label="Add transaction">Add</button>
+        </form>
+
+        <div class="filters" aria-label="Transaction filters">
+            <select id="filter-type" aria-label="Filter by type">
+                <option value="all" selected>All Types</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <select id="filter-category" aria-label="Filter by category">
+                <option value="all" selected>All Categories</option>
+                <option value="salary">Salary</option>
+                <option value="freelance">Freelance</option>
+                <option value="investment">Investment</option>
+                <option value="food">Food</option>
+                <option value="rent">Rent</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="transport">Transport</option>
+                <option value="utilities">Utilities</option>
+                <option value="other_income">Other Income</option>
+                <option value="other_expense">Other Expense</option>
+            </select>
+        </div>
+
+        <div class="summary" aria-label="Financial summary">
+            <div class="summary-item" role="region" aria-live="polite">
+                <h3>Total Income</h3>
+                <p id="total-income">$0.00</p>
+            </div>
+            <div class="summary-item" role="region" aria-live="polite">
+                <h3>Total Expenses</h3>
+                <p id="total-expenses">$0.00</p>
+            </div>
+            <div class="summary-item" role="region" aria-live="polite">
+                <h3>Balance</h3>
+                <p id="balance">$0.00</p>
+            </div>
+        </div>
+
+        <div id="chart-container">
+            <canvas id="category-chart" aria-label="Category-wise income and expenses chart" role="img"></canvas>
+        </div>
+
+        <ul id="transaction-list" aria-label="Transactions list" tabindex="0"></ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
